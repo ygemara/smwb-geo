@@ -26,6 +26,7 @@ def fetch_geo_traffic_data(api_key, traffic_type, start_date, end_date, domains,
         response = requests.get(url, headers=headers)
         if response.status_code == 429:
             time.sleep(5)
+            response = requests.get(url, headers=headers)
         if response.status_code == 200:
             json_response = response.json()
             if json_response.get("records"):
