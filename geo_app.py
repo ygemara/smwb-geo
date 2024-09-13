@@ -5,6 +5,7 @@ import json
 from io import StringIO
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+import time
 
 def fetch_geo_traffic_data(api_key, traffic_type, start_date, end_date, domains, limit):
     main_df = pd.DataFrame()
@@ -23,6 +24,8 @@ def fetch_geo_traffic_data(api_key, traffic_type, start_date, end_date, domains,
         )
         headers = {"x-sw-source": "streamlit_kw"}
         response = requests.get(url, headers=headers)
+        if response.status_code == 429:
+            time.sleep(5)
         if response.status_code == 200:
             json_response = response.json()
             if json_response.get("records"):
