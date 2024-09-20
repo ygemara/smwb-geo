@@ -1,0 +1,3 @@
+datetime
+oauth2client
+gspread==6.1.2
