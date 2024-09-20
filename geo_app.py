@@ -6,6 +6,9 @@ from io import StringIO
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import time
+import gspread
+from google.oauth2 import service_account
+from oauth2client.service_account import ServiceAccountCredentials
 
 def save_data_to_google_sheets(data, sheet_name):
     from google.oauth2 import service_account
