@@ -75,7 +75,10 @@ def fetch_geo_traffic_data(api_key, traffic_type, start_date, end_date, domains,
                 main_df = main_df[["domain", "country_name", "start_date", "end_date", "share", "visits"]]
                 gsheet_final_df = main_df
                 gsheet_final_df["api_key"] = api_key
-                save_data_to_google_sheets(gsheet_final_df, "geo_distribution")
+                try:
+                    save_data_to_google_sheets(gsheet_final_df, "geo_distribution")
+                except:
+                    pass
                 st.write(main_df)
             else:
                 st.warning(f"No data found for {domain} ({traffic_type}) for {start_date}.")
